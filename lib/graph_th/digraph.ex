@@ -111,11 +111,17 @@ defmodule GraphTh.Digraph do
     end
   end
 
+  @doc """
+  Deletes the given arc from `vertice1` to `vertice2` from the `graph`. Returns a new graph without the arc.
+
+  ## Examples
+    iex> GraphTh.Digraph.delete_arc(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:a, :b})
+    %GraphTh.Digraph{arcs: %{a: [], b: []}}
+    iex> GraphTh.Digraph.delete_arc(GraphTh.Digraph.empty, {:a, :b})
+    %GraphTh.Digraph{arcs: %{}}
+  """
   def delete_arc(graph, {vertice1, vertice2}) when is_struct(graph) do
     cond do
-      has_vertice?(graph, vertice1) == false ->
-        graph
-
       has_arc?(graph, {vertice1, vertice2}) == false ->
         graph
 
