@@ -1,6 +1,6 @@
 # GraphTh
 
-**TODO: Add description**
+GraphTh is a library for graph theory.
 
 ## Installation
 
