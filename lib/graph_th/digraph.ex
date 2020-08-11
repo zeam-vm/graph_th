@@ -5,6 +5,14 @@ defmodule GraphTh.Digraph do
 
   defstruct arcs: %{}
 
+  @doc """
+  Generate an empty directed graph.
+
+  ## Examples
+
+    iex> GraphTh.Digraph.empty()
+    %GraphTh.Digraph{arcs: %{}}
+  """
   def empty() do
     %GraphTh.Digraph{arcs: %{}}
   end
