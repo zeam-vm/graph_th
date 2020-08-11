@@ -5,11 +5,11 @@ defmodule GraphTh.Digraph do
     %GraphTh.Digraph{arcs: %{}}
   end
 
-  def has_vertice?(g, v) when is_struct(g) and is_atom(v) do
+  def has_vertice?(g, v) when is_struct(g) do
     Map.has_key?(g.arcs, v)
   end
 
-  def has_arc?(g, {v1, v2}) when is_struct(g) and is_atom(v1) and is_atom(v2) do
+  def has_arc?(g, {v1, v2}) when is_struct(g) do
     k = Map.get(g.arcs, v1)
 
     if is_nil(k) do
@@ -19,7 +19,7 @@ defmodule GraphTh.Digraph do
     end
   end
 
-  def add_vertice(g, v) when is_struct(g) and is_atom(v) do
+  def add_vertice(g, v) when is_struct(g) do
     if has_vertice?(g, v) do
       g
     else
@@ -27,7 +27,7 @@ defmodule GraphTh.Digraph do
     end
   end
 
-  def add_arc(g, {v1, v2}) when is_struct(g) and is_atom(v1) and is_atom(v2) do
+  def add_arc(g, {v1, v2}) when is_struct(g) do
     cond do
       has_vertice?(g, v1) == false ->
         %GraphTh.Digraph{arcs: Map.put(g.arcs, v1, [v2])} |> add_vertice(v2)
@@ -41,7 +41,7 @@ defmodule GraphTh.Digraph do
     end
   end
 
-  def remove_arc(g, {v1, v2}) when is_struct(g) and is_atom(v1) and is_atom(v2) do
+  def remove_arc(g, {v1, v2}) when is_struct(g) do
     cond do
       has_vertice?(g, v1) == false ->
         g
