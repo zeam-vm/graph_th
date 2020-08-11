@@ -20,4 +20,16 @@ defmodule GraphTh.Path do
   def is_null?(path) when is_struct(path) do
     length_p(path) == 0
   end
+
+  def induced_graph(path) when is_struct(path) do
+    Enum.zip([nil] ++ path.path, path.path ++ [nil])
+    |> Enum.reduce(
+      GraphTh.Digraph.empty(),
+      fn
+        {_, nil}, g -> g
+        {nil, _}, g -> g
+        {v1, v2}, g -> GraphTh.Digraph.add_arc(g, {v1, v2})
+      end
+    )
+  end
 end
