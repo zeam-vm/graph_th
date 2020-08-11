@@ -33,4 +33,17 @@ defmodule Digraph do
         g
     end
   end
+
+  def remove_arc(g, {v1, v2}) when is_struct(g) and is_atom(v1) and is_atom(v2) do
+    cond do
+      has_vertice?(g, v1) == false ->
+        g
+
+      has_arc?(g, {v1, v2}) == false ->
+        g
+
+      true ->
+        %Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) |> Enum.filter(& &1 != v2))}
+    end
+  end
 end
