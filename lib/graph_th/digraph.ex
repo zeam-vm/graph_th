@@ -55,11 +55,23 @@ defmodule GraphTh.Digraph do
     end
   end
 
-  def add_vertice(g, v) when is_struct(g) do
-    if has_vertice?(g, v) do
-      g
+  @doc """
+  Returns a directed graph with `vertice` added to the given `graph`.
+
+  ## Examples
+
+    iex> GraphTh.Digraph.add_vertice(GraphTh.Digraph.empty(), :a)
+    %GraphTh.Digraph{arcs: %{a: []}}
+    iex> GraphTh.Digraph.add_vertice(%GraphTh.Digraph{arcs: %{a: []}}, :a)
+    %GraphTh.Digraph{arcs: %{a: []}}
+    iex> GraphTh.Digraph.add_vertice(%GraphTh.Digraph{arcs: %{a: []}}, :b)
+    %GraphTh.Digraph{arcs: %{a: [], b: []}}    
+  """
+  def add_vertice(graph, vertice) when is_struct(graph) do
+    if has_vertice?(graph, vertice) do
+      graph
     else
-      %GraphTh.Digraph{arcs: Map.put(g.arcs, v, [])}
+      %GraphTh.Digraph{arcs: Map.put(graph.arcs, vertice, [])}
     end
   end
 
