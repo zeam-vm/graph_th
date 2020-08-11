@@ -163,7 +163,16 @@ defmodule GraphTh.Digraph do
     |> Enum.all?(fn {k, v} -> v |> Enum.all?(&has_arc?(g1, {k, &1})) end)
   end
 
-  def include_path?(g, path) when is_struct(g) and is_struct(path) do
-    subgraph?(g, GraphTh.Path.induced_graph(path))
+  @doc """
+  Returns whether the given `path` is included in the given `graph`.
+
+  ## Examples
+    iex> GraphTh.Digraph.includes_path?(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, GraphTh.Path.path([:a, :b]))                        
+    true
+    iex> GraphTh.Digraph.includes_path?(GraphTh.Digraph.empty(), GraphTh.Path.path([:a, :b]))
+    false
+  """
+  def includes_path?(graph, path) when is_struct(graph) and is_struct(path) do
+    subgraph?(graph, GraphTh.Path.induced_graph(path))
   end
 end
