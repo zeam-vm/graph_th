@@ -1,6 +1,18 @@
 defmodule GraphTh.Path do
+  @moduledoc """
+  GraphTh.Path is a path.
+  """
+
   defstruct path: []
 
+  @doc """
+  Generate an empty path.
+
+  ## Examples
+
+    iex> GraphTh.Path.empty()
+    %GraphTh.Path{path: []}
+  """
   def empty() do
     %GraphTh.Path{path: []}
   end
