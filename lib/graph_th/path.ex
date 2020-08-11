@@ -17,8 +17,14 @@ defmodule GraphTh.Path do
     %GraphTh.Path{path: []}
   end
 
-  def path(p) when is_list(p) do
-    %GraphTh.Path{path: p}
+  @doc """
+  Generate a path from the given `path_list`.
+
+    iex> GraphTh.Path.path([:a, :b])
+    %GraphTh.Path{path: [:a, :b]}
+  """
+  def path(path_list) when is_list(path_list) do
+    %GraphTh.Path{path: path_list}
   end
 
   def is_simple?(path) when is_struct(path) do
