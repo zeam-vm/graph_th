@@ -29,8 +29,8 @@ defmodule GraphTh.Digraph do
     iex> GraphTh.Digraph.has_vertice?(%GraphTh.Digraph{arcs: %{a: []}}, :b)
     false
   """
-  def has_vertice?(g, v) when is_struct(g) do
-    Map.has_key?(g.arcs, v)
+  def has_vertice?(graph, vertice) when is_struct(graph) do
+    Map.has_key?(graph.arcs, vertice)
   end
 
   def has_arc?(g, {v1, v2}) when is_struct(g) do
