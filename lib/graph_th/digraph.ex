@@ -17,6 +17,14 @@ defmodule GraphTh.Digraph do
     %GraphTh.Digraph{arcs: %{}}
   end
 
+  @doc """
+  Returns whether the given `vertice` exists in the given `graph`.
+
+  ## Examples
+
+    iex> GraphTh.Digraph.has_vertice?(GraphTh.Digraph.empty(), :a)
+    false 
+  """
   def has_vertice?(g, v) when is_struct(g) do
     Map.has_key?(g.arcs, v)
   end
