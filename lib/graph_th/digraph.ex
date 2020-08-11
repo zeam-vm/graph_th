@@ -10,7 +10,12 @@ defmodule Digraph do
   end
 
   def has_arc?(g, {v1, v2}) when is_struct(g) and is_atom(v1) and is_atom(v2) do
-    Map.get(g.arcs, v1) |> Enum.any?(&(&1 == v2))
+    k = Map.get(g.arcs, v1) 
+    if is_nil(k) do
+      false
+    else
+      k |> Enum.any?(&(&1 == v2))
+    end
   end
 
   def add_vertice(g, v) when is_struct(g) and is_atom(v) do
@@ -45,5 +50,18 @@ defmodule Digraph do
       true ->
         %Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) |> Enum.filter(& &1 != v2))}
     end
+  end
+
+  def subgraph?(g1, g2) when is_struct(g1) and is_struct(g2) do
+    subvertices?(g1, g2) and subarcs?(g1, g2)
+  end
+
+  defp subvertices?(g1, g2) when is_struct(g1) and is_struct(g2) do
+    Map.keys(g2.arcs) |> Enum.all?(& has_vertice?(g1, &1))
+  end
+
+  defp subarcs?(g1, g2) when is_struct(g1) and is_struct(g2) do
+    g2.arcs
+    |> Enum.all?(fn {k, v} -> v |> Enum.all?(& has_arc?(g1, {k, &1})) end)
   end
 end
