@@ -138,8 +138,20 @@ defmodule GraphTh.Digraph do
     end
   end
 
-  def subgraph?(g1, g2) when is_struct(g1) and is_struct(g2) do
-    subvertices?(g1, g2) and subarcs?(g1, g2)
+  @doc """
+  Returns whether the given `graph2` is a subgraph of the given `graph1`.
+
+  ## Examples
+
+    iex> GraphTh.Digraph.subgraph?(GraphTh.Digraph.empty(), GraphTh.Digraph.empty())
+    true
+    iex> GraphTh.Digraph.subgraph?(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, GraphTh.Digraph.empty())                       
+    true
+    iex> GraphTh.Digraph.subgraph?(GraphTh.Digraph.empty(), %GraphTh.Digraph{arcs: %{a: [:b], b: []}})                         
+    false
+  """
+  def subgraph?(graph1, graph2) when is_struct(graph1) and is_struct(graph2) do
+    subvertices?(graph1, graph2) and subarcs?(graph1, graph2)
   end
 
   defp subvertices?(g1, g2) when is_struct(g1) and is_struct(g2) do
