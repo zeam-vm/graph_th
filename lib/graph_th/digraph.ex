@@ -24,6 +24,10 @@ defmodule GraphTh.Digraph do
 
     iex> GraphTh.Digraph.has_vertice?(GraphTh.Digraph.empty(), :a)
     false
+    iex> GraphTh.Digraph.has_vertice?(%GraphTh.Digraph{arcs: %{a: []}}, :a)
+    true
+    iex> GraphTh.Digraph.has_vertice?(%GraphTh.Digraph{arcs: %{a: []}}, :b)
+    false
   """
   def has_vertice?(g, v) when is_struct(g) do
     Map.has_key?(g.arcs, v)
