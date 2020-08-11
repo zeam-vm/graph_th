@@ -5,6 +5,10 @@ defmodule GraphTh.Path do
     %GraphTh.Path{path: []}
   end
 
+  def path(p) when is_list(p) do
+    %GraphTh.Path{path: p}
+  end
+
   def is_simple?(path) when is_struct(path) do
     length(Enum.uniq(path.path)) == length(path.path)
   end
