@@ -111,17 +111,23 @@ defmodule GraphTh.Digraph do
     end
   end
 
-  def remove_arc(g, {v1, v2}) when is_struct(g) do
+  def delete_arc(graph, {vertice1, vertice2}) when is_struct(graph) do
     cond do
-      has_vertice?(g, v1) == false ->
-        g
+      has_vertice?(graph, vertice1) == false ->
+        graph
 
-      has_arc?(g, {v1, v2}) == false ->
-        g
+      has_arc?(graph, {vertice1, vertice2}) == false ->
+        graph
 
       true ->
         %GraphTh.Digraph{
-          arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) |> Enum.filter(&(&1 != v2)))
+          arcs:
+            Map.put(
+              graph.arcs,
+              vertice1,
+              Map.get(graph.arcs, vertice1)
+              |> Enum.filter(&(&1 != vertice2))
+            )
         }
     end
   end
