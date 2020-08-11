@@ -33,7 +33,8 @@ defmodule GraphTh.Digraph do
         %GraphTh.Digraph{arcs: Map.put(g.arcs, v1, [v2])} |> add_vertice(v2)
 
       has_arc?(g, {v1, v2}) == false ->
-        %GraphTh.Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) ++ [v2])} |> add_vertice(v2)
+        %GraphTh.Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) ++ [v2])}
+        |> add_vertice(v2)
 
       true ->
         g
@@ -49,7 +50,9 @@ defmodule GraphTh.Digraph do
         g
 
       true ->
-        %GraphTh.Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) |> Enum.filter(&(&1 != v2)))}
+        %GraphTh.Digraph{
+          arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) |> Enum.filter(&(&1 != v2)))
+        }
     end
   end
 
