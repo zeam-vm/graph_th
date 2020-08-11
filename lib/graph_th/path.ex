@@ -29,6 +29,16 @@ defmodule GraphTh.Path do
     %GraphTh.Path{path: path_list}
   end
 
+  @doc """
+  Returns whether the given `path` is simple, that is, all vertices on `path` are distinct.
+
+  ## Examples
+
+    iex> GraphTh.Path.is_simple?(GraphTh.Path.path([:a, :b]))
+    true
+    iex> GraphTh.Path.is_simple?(GraphTh.Path.path([:a, :b, :a]))
+    false
+  """
   def is_simple?(path) when is_struct(path) do
     length(Enum.uniq(path.path)) == length(path.path)
   end
