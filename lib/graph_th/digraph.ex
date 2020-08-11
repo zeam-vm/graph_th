@@ -1,4 +1,4 @@
-defmodule Digraph do
+defmodule GraphTh.Digraph do
   defstruct arcs: %{}
 
   def empty() do
