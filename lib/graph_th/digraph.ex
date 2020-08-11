@@ -75,17 +75,39 @@ defmodule GraphTh.Digraph do
     end
   end
 
-  def add_arc(g, {v1, v2}) when is_struct(g) do
-    cond do
-      has_vertice?(g, v1) == false ->
-        %GraphTh.Digraph{arcs: Map.put(g.arcs, v1, [v2])} |> add_vertice(v2)
+  @doc """
+  Returns a directed graph with an arc from `vertice1` to `vertice2` added to the given `graph`.
 
-      has_arc?(g, {v1, v2}) == false ->
-        %GraphTh.Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) ++ [v2])}
-        |> add_vertice(v2)
+  ## Examples
+
+    iex> GraphTh.Digraph.add_arc(GraphTh.Digraph.empty(), {:a, :b})
+    %GraphTh.Digraph{arcs: %{a: [:b], b: []}}
+    iex> GraphTh.Digraph.add_arc(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:a, :b})
+    %GraphTh.Digraph{arcs: %{a: [:b], b: []}}
+    iex> GraphTh.Digraph.add_arc(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:b, :c})
+    %GraphTh.Digraph{arcs: %{a: [:b], b: [:c], c: []}}
+    iex> GraphTh.Digraph.add_arc(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:a, :c})
+    %GraphTh.Digraph{arcs: %{a: [:b, :c], b: [], c: []}}
+  """
+  def add_arc(graph, {vertice1, vertice2}) when is_struct(graph) do
+    cond do
+      has_vertice?(graph, vertice1) == false ->
+        %GraphTh.Digraph{arcs: Map.put(graph.arcs, vertice1, [vertice2])}
+        |> add_vertice(vertice2)
+
+      has_arc?(graph, {vertice1, vertice2}) == false ->
+        %GraphTh.Digraph{
+          arcs:
+            Map.put(
+              graph.arcs,
+              vertice1,
+              Map.get(graph.arcs, vertice1) ++ [vertice2]
+            )
+        }
+        |> add_vertice(vertice2)
 
       true ->
-        g
+        graph
     end
   end
 
