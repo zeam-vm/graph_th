@@ -1,7 +1,7 @@
 defmodule Digraph do
   defstruct arcs: %{}
 
-  def di_graph() do
+  def empty_graph() do
     %Digraph{arcs: %{}}
   end
 
