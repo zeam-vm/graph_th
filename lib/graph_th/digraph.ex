@@ -33,13 +33,25 @@ defmodule GraphTh.Digraph do
     Map.has_key?(graph.arcs, vertice)
   end
 
-  def has_arc?(g, {v1, v2}) when is_struct(g) do
-    k = Map.get(g.arcs, v1)
+  @doc """
+  Returns whether the given arc from `vertice1` to `vertice2` exists in the given `graph`.
+
+  ## Examples
+
+    iex> GraphTh.Digraph.has_arc?(GraphTh.Digraph.empty(), {:a, :b})
+    false
+    iex> GraphTh.Digraph.has_arc?(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:a, :b})
+    true
+    iex> GraphTh.Digraph.has_arc?(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:a, :c})
+    false
+  """
+  def has_arc?(graph, {vertice1, vertice2}) when is_struct(graph) do
+    k = Map.get(graph.arcs, vertice1)
 
     if is_nil(k) do
       false
     else
-      k |> Enum.any?(&(&1 == v2))
+      k |> Enum.any?(&(&1 == vertice2))
     end
   end
 
