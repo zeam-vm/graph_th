@@ -20,6 +20,8 @@ defmodule GraphTh.Path do
   @doc """
   Generate a path from the given `path_list`.
 
+  ## Examples
+
     iex> GraphTh.Path.path([:a, :b])
     %GraphTh.Path{path: [:a, :b]}
   """
