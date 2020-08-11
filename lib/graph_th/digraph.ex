@@ -23,7 +23,7 @@ defmodule GraphTh.Digraph do
   ## Examples
 
     iex> GraphTh.Digraph.has_vertice?(GraphTh.Digraph.empty(), :a)
-    false 
+    false
   """
   def has_vertice?(g, v) when is_struct(g) do
     Map.has_key?(g.arcs, v)
