@@ -19,5 +19,5 @@ defmodule GraphTh.Path do
 
   def is_null?(path) when is_struct(path) do
     length_p(path) == 0
-  end 
+  end
 end
