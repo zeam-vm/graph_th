@@ -1,4 +1,8 @@
 defmodule GraphTh.Digraph do
+  @moduledoc """
+  GraphTh.Digraph is a directed graph.
+  """
+
   defstruct arcs: %{}
 
   def empty() do
