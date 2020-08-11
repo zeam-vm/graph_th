@@ -24,10 +24,10 @@ defmodule Digraph do
   def add_arc(g, {v1, v2}) when is_struct(g) and is_atom(v1) and is_atom(v2) do
     cond do
       has_vertice?(g, v1) == false ->
-        %Digraph{arcs: Map.put(g.arcs, v1, [v2])}
+        %Digraph{arcs: Map.put(g.arcs, v1, [v2])} |> add_vertice(v2)
 
       has_arc?(g, {v1, v2}) == false ->
-        %Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) ++ [v2])}
+        %Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) ++ [v2])} |> add_vertice(v2)
 
       true ->
         g
