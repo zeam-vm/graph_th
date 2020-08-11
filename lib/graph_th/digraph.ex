@@ -2,7 +2,7 @@ defmodule GraphTh.Digraph do
   defstruct arcs: %{}
 
   def empty() do
-    %Digraph{arcs: %{}}
+    %GraphTh.Digraph{arcs: %{}}
   end
 
   def has_vertice?(g, v) when is_struct(g) and is_atom(v) do
@@ -23,17 +23,17 @@ defmodule GraphTh.Digraph do
     if has_vertice?(g, v) do
       g
     else
-      %Digraph{arcs: Map.put(g.arcs, v, [])}
+      %GraphTh.Digraph{arcs: Map.put(g.arcs, v, [])}
     end
   end
 
   def add_arc(g, {v1, v2}) when is_struct(g) and is_atom(v1) and is_atom(v2) do
     cond do
       has_vertice?(g, v1) == false ->
-        %Digraph{arcs: Map.put(g.arcs, v1, [v2])} |> add_vertice(v2)
+        %GraphTh.Digraph{arcs: Map.put(g.arcs, v1, [v2])} |> add_vertice(v2)
 
       has_arc?(g, {v1, v2}) == false ->
-        %Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) ++ [v2])} |> add_vertice(v2)
+        %GraphTh.Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) ++ [v2])} |> add_vertice(v2)
 
       true ->
         g
@@ -49,7 +49,7 @@ defmodule GraphTh.Digraph do
         g
 
       true ->
-        %Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) |> Enum.filter(&(&1 != v2)))}
+        %GraphTh.Digraph{arcs: Map.put(g.arcs, v1, Map.get(g.arcs, v1) |> Enum.filter(&(&1 != v2)))}
     end
   end
 
