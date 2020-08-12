@@ -65,7 +65,21 @@ defmodule GraphTh.Path do
     length(path.path) - 1
   end
 
-  def is_null?(path) when is_struct(path) do
+  @doc """
+  Returns whether the given `path` is trivial, that is, with zero length consists of a single vertex.
+
+  ## Examples
+
+    iex> GraphTh.Path.is_trivial?(GraphTh.Path.empty())
+    true
+    iex> GraphTh.Path.is_trivial?(GraphTh.Path.path([:a]))
+    true
+    iex> GraphTh.Path.is_trivial?(GraphTh.Path.path([:a, :b]))
+    false
+    iex> GraphTh.Path.is_trivial?(GraphTh.Path.path([:a, :b, :c]))
+    false
+  """
+  def is_trivial?(path) when is_struct(path) do
     length_p(path) == 0
   end
 
