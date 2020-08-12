@@ -43,6 +43,20 @@ defmodule GraphTh.Path do
     length(Enum.uniq(path.path)) == length(path.path)
   end
 
+  @doc """
+  Returns the length of `path`.
+
+  ## Examples
+
+    iex> GraphTh.Path.length_p(GraphTh.Path.empty())
+    0
+    iex> GraphTh.Path.length_p(GraphTh.Path.path([:a]))
+    0 
+    iex> GraphTh.Path.length_p(GraphTh.Path.path([:a, :b]))
+    1
+    iex> GraphTh.Path.length_p(GraphTh.Path.path([:a, :b, :c]))
+    2
+  """
   def length_p(%GraphTh.Path{path: []}) do
     0
   end
