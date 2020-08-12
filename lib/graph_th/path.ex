@@ -36,6 +36,7 @@ defmodule GraphTh.Path do
 
     iex> GraphTh.Path.is_simple?(GraphTh.Path.path([:a, :b]))
     true
+
     iex> GraphTh.Path.is_simple?(GraphTh.Path.path([:a, :b, :a]))
     false
   """
@@ -50,10 +51,13 @@ defmodule GraphTh.Path do
 
     iex> GraphTh.Path.length_p(GraphTh.Path.empty())
     0
+
     iex> GraphTh.Path.length_p(GraphTh.Path.path([:a]))
     0
+
     iex> GraphTh.Path.length_p(GraphTh.Path.path([:a, :b]))
     1
+
     iex> GraphTh.Path.length_p(GraphTh.Path.path([:a, :b, :c]))
     2
   """
@@ -72,10 +76,13 @@ defmodule GraphTh.Path do
 
     iex> GraphTh.Path.is_trivial?(GraphTh.Path.empty())
     true
+
     iex> GraphTh.Path.is_trivial?(GraphTh.Path.path([:a]))
     true
+
     iex> GraphTh.Path.is_trivial?(GraphTh.Path.path([:a, :b]))
     false
+
     iex> GraphTh.Path.is_trivial?(GraphTh.Path.path([:a, :b, :c]))
     false
   """
@@ -90,10 +97,13 @@ defmodule GraphTh.Path do
 
     iex> GraphTh.Path.induced_graph(GraphTh.Path.empty())
     %GraphTh.Digraph{arcs: %{}}
+    
     iex> GraphTh.Path.induced_graph(GraphTh.Path.path([:a]))
     %GraphTh.Digraph{arcs: %{a: []}}
+    
     iex> GraphTh.Path.induced_graph(GraphTh.Path.path([:a, :b]))
     %GraphTh.Digraph{arcs: %{a: [:b], b: []}}
+    
     iex> GraphTh.Path.induced_graph(GraphTh.Path.path([:a, :b, :c]))
     %GraphTh.Digraph{arcs: %{a: [:b], b: [:c], c: []}}
   """

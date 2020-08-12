@@ -24,8 +24,10 @@ defmodule GraphTh.Digraph do
 
     iex> GraphTh.Digraph.has_vertice?(GraphTh.Digraph.empty(), :a)
     false
+
     iex> GraphTh.Digraph.has_vertice?(%GraphTh.Digraph{arcs: %{a: []}}, :a)
     true
+    
     iex> GraphTh.Digraph.has_vertice?(%GraphTh.Digraph{arcs: %{a: []}}, :b)
     false
   """
@@ -40,8 +42,10 @@ defmodule GraphTh.Digraph do
 
     iex> GraphTh.Digraph.has_arc?(GraphTh.Digraph.empty(), {:a, :b})
     false
+    
     iex> GraphTh.Digraph.has_arc?(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:a, :b})
     true
+    
     iex> GraphTh.Digraph.has_arc?(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:a, :c})
     false
   """
@@ -62,8 +66,10 @@ defmodule GraphTh.Digraph do
 
     iex> GraphTh.Digraph.add_vertice(GraphTh.Digraph.empty(), :a)
     %GraphTh.Digraph{arcs: %{a: []}}
+    
     iex> GraphTh.Digraph.add_vertice(%GraphTh.Digraph{arcs: %{a: []}}, :a)
     %GraphTh.Digraph{arcs: %{a: []}}
+    
     iex> GraphTh.Digraph.add_vertice(%GraphTh.Digraph{arcs: %{a: []}}, :b)
     %GraphTh.Digraph{arcs: %{a: [], b: []}}    
   """
@@ -82,10 +88,13 @@ defmodule GraphTh.Digraph do
 
     iex> GraphTh.Digraph.add_arc(GraphTh.Digraph.empty(), {:a, :b})
     %GraphTh.Digraph{arcs: %{a: [:b], b: []}}
+    
     iex> GraphTh.Digraph.add_arc(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:a, :b})
     %GraphTh.Digraph{arcs: %{a: [:b], b: []}}
+    
     iex> GraphTh.Digraph.add_arc(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:b, :c})
     %GraphTh.Digraph{arcs: %{a: [:b], b: [:c], c: []}}
+    
     iex> GraphTh.Digraph.add_arc(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:a, :c})
     %GraphTh.Digraph{arcs: %{a: [:b, :c], b: [], c: []}}
   """
@@ -115,8 +124,10 @@ defmodule GraphTh.Digraph do
   Deletes the given arc from `vertice1` to `vertice2` from the `graph`. Returns a new graph without the arc.
 
   ## Examples
+
     iex> GraphTh.Digraph.delete_arc(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, {:a, :b})
     %GraphTh.Digraph{arcs: %{a: [], b: []}}
+    
     iex> GraphTh.Digraph.delete_arc(GraphTh.Digraph.empty, {:a, :b})
     %GraphTh.Digraph{arcs: %{}}
   """
@@ -145,8 +156,10 @@ defmodule GraphTh.Digraph do
 
     iex> GraphTh.Digraph.subgraph?(GraphTh.Digraph.empty(), GraphTh.Digraph.empty())
     true
+    
     iex> GraphTh.Digraph.subgraph?(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, GraphTh.Digraph.empty())                       
     true
+    
     iex> GraphTh.Digraph.subgraph?(GraphTh.Digraph.empty(), %GraphTh.Digraph{arcs: %{a: [:b], b: []}})                         
     false
   """
@@ -167,8 +180,10 @@ defmodule GraphTh.Digraph do
   Returns whether the given `path` is included in the given `graph`.
 
   ## Examples
+
     iex> GraphTh.Digraph.includes_path?(%GraphTh.Digraph{arcs: %{a: [:b], b: []}}, GraphTh.Path.path([:a, :b]))                        
     true
+    
     iex> GraphTh.Digraph.includes_path?(GraphTh.Digraph.empty(), GraphTh.Path.path([:a, :b]))
     false
   """
