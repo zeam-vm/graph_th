@@ -51,7 +51,7 @@ defmodule GraphTh.Path do
     iex> GraphTh.Path.length_p(GraphTh.Path.empty())
     0
     iex> GraphTh.Path.length_p(GraphTh.Path.path([:a]))
-    0 
+    0
     iex> GraphTh.Path.length_p(GraphTh.Path.path([:a, :b]))
     1
     iex> GraphTh.Path.length_p(GraphTh.Path.path([:a, :b, :c]))
@@ -81,6 +81,24 @@ defmodule GraphTh.Path do
   """
   def is_trivial?(path) when is_struct(path) do
     length_p(path) == 0
+  end
+
+  @doc """
+  Returns a directed graph representation of the given `path`.
+
+  ## Examples
+
+    iex> GraphTh.Path.induced_graph(GraphTh.Path.empty())
+    %GraphTh.Digraph{arcs: %{}}
+    iex> GraphTh.Path.induced_graph(GraphTh.Path.path([:a]))
+    %GraphTh.Digraph{arcs: %{a: []}}
+    iex> GraphTh.Path.induced_graph(GraphTh.Path.path([:a, :b]))
+    %GraphTh.Digraph{arcs: %{a: [:b], b: []}}
+    iex> GraphTh.Path.induced_graph(GraphTh.Path.path([:a, :b, :c]))
+    %GraphTh.Digraph{arcs: %{a: [:b], b: [:c], c: []}}
+  """
+  def induced_graph(%GraphTh.Path{path: [vertice]}) do
+    GraphTh.Digraph.empty() |> GraphTh.Digraph.add_vertice(vertice)
   end
 
   def induced_graph(path) when is_struct(path) do
